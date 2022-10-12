@@ -1,0 +1,86 @@
+
+<style>
+  #table {
+    border-collapse: collapse;
+    width: 70%;
+    border-color:black;
+  }
+
+    #table td, #table th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+
+    #table th {
+      padding: 10px;
+      background-color: #FAEBD7;
+    }
+  #country {
+    padding: 10px;
+    font-size: large;
+    margin: 15px;
+    background-color: #FAEBD7;
+  }
+
+  .filter option, select {
+    padding: 10px;
+    background-color: #FAEBD7;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  #limit {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #FAEBD7;
+    font-weight: bold;
+  }
+  </style>
+
+
+<div>
+  Limit: <input id="limit" type="number" #l>
+
+  <span>   </span>
+  <div class="filter">
+    <br><br>
+    <label for="x">  Filter by:</label>
+    <select #selectedFilter>
+      <option value="Name">Name</option>
+      <option value="Category">Category</option>
+      <option value="All">All</option>
+    </select>
+    <br /> <br />
+    OrderByCount
+    <input type="checkbox" #order>
+    <input type="text" #constraint>
+    <br />
+    <button style="padding: 5px;margin: 15px;" (click)="limiting(l.value)"> DISPLAY</button>
+    <br>
+  </div>
+
+
+  <table id="table">
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Count</th>
+    </tr>
+    <tr *ngFor="let item of filterFunction(selectedFilter.value, order.checked, constraint.value)">
+      <td>{{item.Name}}</td>
+      <td>{{item.Price}}</td>
+      <td>{{item.Category}}</td>
+      <td>{{item.Count}}</td>
+    </tr>
+
+  </table>
+
+  <br> <br> <br>
+  <label>  Select a City:</label>
+  <select (click)="displayCountry(selectedCity.value)" #selectedCity>
+    <option *ngFor="let city of cities">{{city.Name}}</option>
+  </select>
+  <label id="country">{{country}}</label>
+</div>
+<router-outlet></router-outlet>
