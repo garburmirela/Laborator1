@@ -1,2 +1,0 @@
-C:\Users\Mirela\Documents\Stick\IA2001\Anul III Sem I\Framework\angularproject1\angularproject1\obj\Debug\angularproject1.esproj.SuggestedBindingRedirects.cache
-C:\Users\Mirela\Documents\Stick\IA2001\Anul III Sem I\Framework\angularproject1\angularproject1\obj\Debug\angularproject1.esproj.CoreCompileInputs.cache

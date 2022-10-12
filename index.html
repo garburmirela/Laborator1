@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS laborator 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <form novalidate>
+            <div id="limit-input">
+                <label for="limit">Limit</label>
+                <input type="number" ng-model="currentAppliedConfig.limit" id="limit" name="limit">
+            </div>
+
+            <div id="filters">
+                <label for="filter-items">Filter By:</label>
+                <select ng-model="currentAppliedConfig.categories" name="filter-items" id="filter-items">
+                    <option value="0">All</option>
+                    <option value="1">Category</option>
+                    <option value="2">Name</option>
+                </select>
+            </div>
+
+            <div id="sorter">
+                <input type="checkbox" id="sorter-by-amount" ng-model="currentAppliedConfig.sortByAmount.value">
+                <label for="sorter-by-amount">Sort by amount</label>
+                <input type="number" name="amount" ng-model="currentAppliedConfig.sortByAmount.inputValue">
+            </div>
+
+            <div class="submit-button">
+                <button ng-click="applyFilters()">Apply</button>
+                <button ng-click="resetFilters()">Reset</button>
+            </div>
+        </form>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Amount</th>
+            </tr>
+            <tr ng-repeat="item in tableItems | limitTo: currentAppliedConfig.limit | orderBy: 'Count'">
+                <td>{{ item.Name  }}</td>
+                <td>{{ item.Price }}</td>
+                <td>{{ item.Category }}</td>
+                <td>{{ item.Count }}</td>
+            </tr>
+        </table>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="app.controller.js"></script>
+</body>
+</html>
