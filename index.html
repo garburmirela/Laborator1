@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS laborator 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <form novalidate>
+            <div id="limit-input">
+                <label for="limit">Limit</label>
+                <input type="number" ng-model="currentAppliedConfig.limit" id="limit" name="limit">
+            </div>
+<br>
+        </form>
+<h2>Tabel ordered by limit</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Amount</th>
+            </tr>
+            <tr ng-repeat="item in tableItems | limitTo: currentAppliedConfig.limit | orderBy: 'Count'">
+                <td>{{ item.Name  }}</td>
+                <td>{{ item.Price }}</td>
+                <td>{{ item.Category }}</td>
+                <td>{{ item.Count }}</td>
+            </tr>
+        </table>
+
+
+        <br><h2>Click on 'Name', 'Category' in order to sort</h2>
+        <table>
+            <tr>
+                <th ng-click="orderByMe('Name')">Name</th>
+                <th>Price</th>
+                <th ng-click="orderByMe('Category')">Category</th>
+                <th>Amount</th>
+            </tr>
+            <tr ng-repeat="x in tableItems | orderBy:myOrderBy">
+                <td>{{ x.Name  }}</td>
+                <td>{{ x.Price }}</td>
+                <td>{{ x.Category }}</td>
+                <td>{{ x.Count }}</td>
+            </tr>
+        </table>
+
+        <p>Select a country:</p>
+
+       <select ng-model="selectedCountry">
+          <option ng-repeat="x in country" value="{{x.Name}}">{{x.Country}}</option>
+       </select>
+
+<h1>The capital is: {{selectedCountry}}</h1>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="app.controller.js"></script>
+</body>
+</html>
